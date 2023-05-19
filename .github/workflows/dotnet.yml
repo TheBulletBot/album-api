@@ -27,4 +27,4 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Build Docker Image
-      run: docker build . --file album.api/Dockerfile --tag greetingapi:$(date +%s)
+      run: docker build . --file Album.Api/Dockerfile --tag greetingapi:$(date +%s)
