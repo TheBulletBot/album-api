@@ -40,3 +40,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Build Docker Image
       run: docker build . --file Album.Api/Dockerfile --tag greetingapi:$(date +%s)
+    - name: tag Image for ECR
+      run: docker tag cnsd/album:latest 600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:latest
+    - name: push image to ECR
+      run: docker push 600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:latest
