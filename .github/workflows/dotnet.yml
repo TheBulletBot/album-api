@@ -18,6 +18,9 @@ jobs:
     - uses: actions/checkout@v3
     - name: Configure AWS Credentials For GitHub Actions
       uses: aws-actions/configure-aws-credentials@v2
+      with: 
+        aws-region: us-east-1
+        
     - name: Amazon ECR "Login" Action for GitHub Actions
       uses: aws-actions/amazon-ecr-login@v1
    
