@@ -20,9 +20,9 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v2
       with: 
         aws-region: us-east-1
-        aws-access-key-id: ASIAYX27MVETJ4PIFRM3
-        aws-secret-access-key: s94nOQ4m6yT4pEbMHeUHDvsLteL5eXrzKbi0Mm3f
-        aws-session-token: FwoGZXIvYXdzEKT//////////wEaDMDMQRInEFUf+S3jJSLBAS5h+3v5CE1hT5wca5+9uCXy2jtX416y8LziqzSpOsPeaWgQUbVRP4Ak4bg7i/m4dj+Ti5M0wAlsFfLeRnyVNNvDnIw/j4LB0G6yyVN4iEmLg4YD0qxuyk+8YBqbNi/gA4uriMKf9Oke/YbxOCHwfqzyV5CyHtzE9yYrLiFrjcNkk5UKwbuW1wWIQx6tfWOOGJdQ9J1nVXoSQSld8NO7Jte6LGMT/Aow1bZxU6uv/vyGla3QW3OKT2R9OXplIpQPMNso35StowYyLQM2dETSh69WoheyT51KoIBjLc81WsE2H1Rbi50mXscNczSRq0c/KW5I6xVNkA==
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         
     - name: Amazon ECR "Login" Action for GitHub Actions
       uses: aws-actions/amazon-ecr-login@v1
