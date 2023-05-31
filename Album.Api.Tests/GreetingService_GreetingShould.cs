@@ -1,4 +1,7 @@
 using Album.Api;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System.Net;
 namespace Album.Api.Tests
 {
     public class GreetingService_GreetingShould
@@ -15,7 +18,7 @@ namespace Album.Api.Tests
         {
             var greetingService = new Services.GreetingService();
             string result = greetingService.Hello("TemplateName");
-            Assert.Equal("Hello TemplateName", result);
+            Assert.Equal($"Hello TemplateName from {Dns.GetHostName()}", result);
         }
         [Fact]
         public void Greeting_InputIsWSpace_ReturnHelloWorld()
