@@ -40,9 +40,9 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Build Docker Image
-      run: docker build . --file Album.Api/Dockerfile --tag cnsd/album:latest
+      run: docker build . --file Album.Api/Dockerfile --tag cnsd/album:${{ github.sha }}
     - name: tag Image for ECR
-      run: docker tag cnsd/album:${{ github.sha }} 600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:latest
+      run: docker tag cnsd/album:${{ github.sha }} 600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:${{ github.sha }}
     - name: push image to ECR
       run: docker push 600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:latest
     - name: Deploy to Amazon ECS
