@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:600958609702:task-definition/AlbumTaskDefinition:1",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:600958609702:task-definition/AlbumTaskDefinition:5",
     "containerDefinitions": [
         {
             "name": "AlbumContainer",
@@ -15,10 +15,8 @@
             ],
             "essential": true,
             "environment": [],
-            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
-            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
@@ -34,7 +32,7 @@
     "taskRoleArn": "arn:aws:iam::600958609702:role/LabRole",
     "executionRoleArn": "arn:aws:iam::600958609702:role/LabRole",
     "networkMode": "awsvpc",
-    "revision": 1,
+    "revision": 5,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -80,7 +78,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-05-31T14:21:10.136Z",
+    "registeredAt": "2023-07-03T20:58:15.332Z",
     "registeredBy": "arn:aws:sts::600958609702:assumed-role/voclabs/user2528359=Kevin_Kranendonk",
     "tags": []
 }
