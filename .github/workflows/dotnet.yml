@@ -35,28 +35,23 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build, tag, and push image to Amazon ECR
-      id: build-image
-      env:
-        IMAGE_TAG: ${{ github.sha }}
-      run: |
-        docker build --file Album.Api/Dockerfile -t 600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:$IMAGE_TAG .
-        docker push 600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:$IMAGE_TAG
-        echo "image=600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:$IMAGE_TAG" >> $GITHUB_OUTPUT
-    - name: Fill in the new image ID in the Amazon ECS task definition
-      id: task-def
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: task-definition.json
-        container-name: AlbumContainer
-        image: ${{ steps.build-image.outputs.image }}
+    - name: Build
+      run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Build Docker Image
+      run: docker build . --file Album.Api/Dockerfile --tag cnsd/album:${{ github.sha }}
+    - name: tag Image for ECR
+      run: docker tag cnsd/album:${{ github.sha }} 600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:${{ github.sha }}
+    - name: push image to ECR
+      run: docker push 600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:${{ github.sha }}
     - name: Deploy to Amazon ECS
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        task-definition: task-definition.json
         service: AlbumServiceBlueGreen
         cluster: AlbumCluster
+        container-name: AlbumContainer
         wait-for-service-stability: true
+        image: 600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:${{github.sha}}
 

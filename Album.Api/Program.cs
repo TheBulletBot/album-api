@@ -1,5 +1,9 @@
 using Album.Api.Controllers;
 using Album.Api.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Album.Api;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +15,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllersWithViews();
 builder.Services.AddHealthChecks();
+builder.Services.AddDbContext<AlbumContext>();
 
 builder.Services.AddTransient<IGreetingService, GreetingService>();
+builder.Services.AddTransient<IAlbumService, AlbumService>();
 
 var app = builder.Build();
 app.MapHealthChecks("/health");
@@ -30,4 +36,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+using (var dbContext = new AlbumContext())
+{
+    DbInitializer.Initialize(dbContext);
+};
 app.Run();
