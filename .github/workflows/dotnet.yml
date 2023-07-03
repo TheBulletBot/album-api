@@ -53,5 +53,5 @@ jobs:
         cluster: AlbumCluster
         container-name: AlbumContainer
         wait-for-service-stability: true
-        image: 600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:${{github.sha}}
+        image: 600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:${{ github.sha }}
 
