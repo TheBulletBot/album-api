@@ -3,6 +3,7 @@
     "containerDefinitions": [
         {
             "name": "AlbumContainer",
+            "image":"600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:latest",
             "cpu": 0,
             "portMappings": [
                 {
