@@ -45,6 +45,12 @@ jobs:
       run: docker tag cnsd/album:${{ github.sha }} 600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:${{ github.sha }}
     - name: push image to ECR
       run: docker push 600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:${{ github.sha }}
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: task-definition.json
+        container-name: my-container
+        image: 600958609702.dkr.ecr.us-east-1.amazonaws.com/cnsd/album:${{ github.sha }}
     - name: Deploy to Amazon ECS
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
