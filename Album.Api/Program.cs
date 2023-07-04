@@ -16,6 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllersWithViews();
 builder.Services.AddHealthChecks();
 builder.Services.AddDbContext<AlbumContext>();
+builder.Services.AddCors();
 
 builder.Services.AddTransient<IGreetingService, GreetingService>();
 builder.Services.AddTransient<IAlbumService, AlbumService>();
