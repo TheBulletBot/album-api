@@ -22,6 +22,10 @@ builder.Services.AddTransient<IGreetingService, GreetingService>();
 builder.Services.AddTransient<IAlbumService, AlbumService>();
 
 var app = builder.Build();
+app.UseCors(policy => policy
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowAnyOrigin());
 app.MapHealthChecks("/health");
 
 // Configure the HTTP request pipeline.
